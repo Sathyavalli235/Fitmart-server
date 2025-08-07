@@ -115,6 +115,12 @@ app.delete('/deletepost/:id', (req, res) => {
     });
 });
 
+app.get('/api/server', async(req,res)=>{
+   console.log('✅ Health check called - server is healthy');
+  res.json({message: 'Server is running...'});
+})
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
+
 });
