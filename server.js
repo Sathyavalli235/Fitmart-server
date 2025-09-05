@@ -37,7 +37,7 @@ app.get('/createdb', (req, res) => {
 
 // Create table
 app.get('/createtable', (req, res) => {
-    let sql = 'CREATE TABLE posts(id INT AUTO_INCREMENT, productname VARCHAR(255), description TEXT, price INT, image_url VARCHAR(255), PRIMARY KEY(id))';
+    let sql = 'CREATE TABLE posts(id INT AUTO_INCREMENT, productname VARCHAR(255), description TEXT, price INT, PRIMARY KEY(id))';
     db.query(sql, (err, result) => {
         if (err) throw err;
         res.send('Posts table created...');
@@ -60,7 +60,6 @@ let post = {
   productname: req.body.productname,
   description: req.body.description,
   price: req.body.price,
-  image_url: req.body.image 
 };
     let sql = 'INSERT INTO posts SET ?';
     db.query(sql, post, (err, result) => {
@@ -115,12 +114,6 @@ app.delete('/deletepost/:id', (req, res) => {
     });
 });
 
-app.get('/api/server', async(req,res)=>{
-   console.log('✅ Health check called - server is healthy');
-  res.json({message: 'Server is running...'});
-})
-
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
-
 });
